@@ -17,6 +17,8 @@ import (
 	"github.com/umbracle/fastrlp"
 )
 
+var waitTime = 50 * time.Millisecond
+
 type destinations []string
 
 func (d *destinations) String() string {
@@ -153,6 +155,8 @@ LOOP:
 					fmt.Println("Error writing transaction to disk: ", err)
 					break LOOP
 				}
+
+				time.Sleep(waitTime)
 			}
 			block++
 			continue LOOP
@@ -219,6 +223,8 @@ LOOP:
 			fmt.Println("Error writing progress: ", err)
 			break
 		}
+
+		time.Sleep(waitTime)
 	}
 }
 
